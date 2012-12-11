@@ -10,5 +10,5 @@ setup(
     author_email='wyatt.lee.baldwin@gmail.com',
     keywords='Google Maps',
     url='https://bitbucket.org/wyatt/glineenc',
-    py_modules=('glineenc',),
+    py_modules=('glineenc/__init__', 'glineenc/glineenc'),
 )
