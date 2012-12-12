@@ -11,7 +11,7 @@ zoom_factor = 32
 zoom_level_breaks = []
 for i in range(num_levels):
     zoom_level_breaks.append(threshold * (zoom_factor ** (num_levels - i - 1)))
-    
+
 
 def encode_pairs(points):
     """Encode a set of lat/long points.
@@ -35,14 +35,14 @@ def encode_pairs(points):
     """
     encoded_points = []
     encoded_levels = []
-    
+
     distances = douglas_peucker_distances(points)
     points_of_interest = []
     for i, d in enumerate(distances):
         if d is not None:
             lat, long = points[i]
             points_of_interest.append((lat, long, d))
-    
+
     lat_prev, long_prev = 0, 0
     for lat, long, d in points_of_interest:
         encoded_lat, lat_prev = encode_lat_or_long(lat, lat_prev)
@@ -55,19 +55,20 @@ def encode_pairs(points):
     encoded_levels_str = ''.join([str(l) for l in encoded_levels])
     return encoded_points_str, encoded_levels_str
 
+
 def encode_lat_or_long(x, prev_int):
     """Encode a single latitude or longitude.
-    
+
     ``x``
         The latitude or longitude to encode
-        
+
     ``prev_int``
         The integer value of the previous latitude or longitude
-        
+
     Return the encoded value and its int value, which is used
-        
+
     Example::
-    
+
         >>> x = -179.9832104
         >>> encoded_x, prev = encode_lat_or_long(x, 0)
         >>> encoded_x
@@ -77,17 +78,19 @@ def encode_lat_or_long(x, prev_int):
         >>> x = -120.2
         >>> encode_lat_or_long(x, prev)
         ('al{kJ', -12020000)
-    
+
     """
     int_value = int(x * 1e5)
     delta = int_value - prev_int
     return encode_signed(delta), int_value
+
 
 def encode_signed(n):
     tmp = n << 1
     if n < 0:
         tmp = ~tmp
     return encode_unsigned(tmp)
+
 
 def encode_unsigned(n):
     tmp = []
@@ -100,7 +103,8 @@ def encode_unsigned(n):
     tmp = [(i + 63) for i in tmp]
     tmp = [chr(i) for i in tmp]
     tmp = ''.join(tmp)
-    return tmp    
+    return tmp
+
 
 def douglas_peucker_distances(points):
     distances = [None] * len(points)
@@ -125,6 +129,7 @@ def douglas_peucker_distances(points):
 
     return distances
 
+
 def distance(point, A, B):
     """Compute distance of ``point`` from line ``A``, ``B``."""
     if A == B:
@@ -135,8 +140,8 @@ def distance(point, A, B):
     else:
         u = (
             (((point[0] - A[0]) * (B[0] - A[0])) +
-             ((point[1] - A[1]) * (B[1] - A[1]))) / 
-            (((B[0] - A[0]) ** 2) +  ((B[1] - A[1]) ** 2))
+             ((point[1] - A[1]) * (B[1] - A[1]))) /
+            (((B[0] - A[0]) ** 2) + ((B[1] - A[1]) ** 2))
         )
         if u <= 0:
             out = math.sqrt(
@@ -153,8 +158,9 @@ def distance(point, A, B):
             )
     return out
 
+
 def compute_level(distance):
-    """Compute the appropriate zoom level of a point in terms of its 
+    """Compute the appropriate zoom level of a point in terms of its
     distance from the relevant segment in the DP algorithm."""
     if distance > threshold:
         level = 0
