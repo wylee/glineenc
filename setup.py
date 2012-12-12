@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='glineenc',
-    version='1.0',
+    version='1.1.dev0',
     description='Convert lat/long pairs to Base64 encoding for Google Maps',
     license='MIT',
     author='Wyatt Lee Baldwin',
