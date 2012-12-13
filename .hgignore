@@ -1,37 +1,43 @@
 syntax: glob
 
-*.py[cod]
-
-# C extensions
-*.so
-
-# Packages
-*.egg
-*.egg-info
-dist
-build
-eggs
-parts
-bin
-var
-sdist
-develop-eggs
-.installed.cfg
-lib
-lib64
-
-# Installer logs
-pip-log.txt
-
-# Unit test / coverage reports
-.coverage
-.tox
-nosetests.xml
+*.py[cdo]
 
 # Translations
 *.mo
 
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
+# Installer logs
+pip-log.txt
+
+# C Extensions
+*.so
+
+
+syntax: regexp
+
+# Packages/Buildout
+^.*\.egg$
+^.*\.egg-info$
+^bin$
+^build$
+^develop-eggs$
+^dist$
+^eggs$
+^lib$
+^lib64$
+^parts$
+^sdist$
+^var$
+^MANIFEST$
+^\.installed.cfg$
+
+# Unit test / coverage reports
+^\.coverage$
+^\.tox$
+^nosetests.xml
+
+# Project
+^tags$
+^\.mr\.developer\.cfg$
+^\.project$
+^\.pydevproject
+^\.ropeproject
