@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "glineenc"
+version = "2.0.0.dev0"
+description = "Convert lat/long pairs to Base64 encoding for Google Maps"
+authors = ["Wyatt Baldwin"]
+license = "MIT"
+readme = "README.md"
+
+packages = [
+    { include = "glineenc", from = "src" }
+]
+
+include = [
+    "CHANGELOG.md",
+    "CONTRIBUTORS",
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.group.dev.dependencies]
+black = "*"
+pytest = "*"
+ruff = "*"
+mypy = "^1.1.1"
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.make-release.args]
+test-command = "pytest"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
