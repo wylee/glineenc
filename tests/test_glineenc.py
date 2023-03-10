@@ -1,7 +1,6 @@
 from unittest import TestCase
 
-from glineenc import encode_pairs
-from glineenc.glineenc import encode_lat_or_long
+from glineenc import encode_pairs, encode_lat_or_long
 
 
 class TestGLineEnc(TestCase):

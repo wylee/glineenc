@@ -6,11 +6,8 @@ authors = ["Wyatt Baldwin"]
 license = "MIT"
 readme = "README.md"
 
-packages = [
-    { include = "glineenc", from = "src" }
-]
-
 include = [
+    "src/glineenc.py",
     "CHANGELOG.md",
     "CONTRIBUTORS",
 ]
